@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Edibles Hub • Chef Smoke</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&amp;display=swap');
+        
+        :root {
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .gourmet-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gourmet-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .nav-tab {
+            transition: all 0.2s ease;
+        }
+        
+        .nav-tab.active {
+            background-color: #d4af37;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .tool-section {
+            display: none;
+        }
+        
+        .tool-section.active {
+            display: block;
+        }
+
+        .result-box {
+            background: #111;
+            border: 1px solid #444;
+        }
+
+        .cannabis-green {
+            color: #4ade80;
+        }
+
+        .gold-accent {
+            color: #d4af37;
+        }
+
+        .section-header {
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 0.5rem;
+        }
+
+        .metric {
+            font-size: 1.5rem;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .safety-note {
+            font-size: 0.75rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body class="bg-[#0f0f0f] text-white">
+    <!-- Header -->
+    <header class="border-b border-[#333] bg-[#111]">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-11 h-11 bg-[#d4af37] rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-utensils text-[#111] text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold heading-serif tracking-tight">Gourmet Edibles</h1>
+                    <p class="text-xs text-[#d4af37] -mt-1">CHEF SMOKE • CHICAGO</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-2 text-sm">
+                <div class="px-3 py-1.5 bg-[#1a1a1a] rounded-full flex items-center gap-x-2 text-xs">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="text-emerald-400">Live Tools</span>
+                </div>
+                <button onclick="copyEmbedCode()" 
+                        class="px-4 py-2 text-xs font-medium bg-white text-[#111] rounded-full hover:bg-[#d4af37] transition-colors flex items-center gap-x-2">
+                    <i class="fa-solid fa-code mr-1"></i>
+                    <span>Embed Code</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 pt-8 pb-16">
+        
+        <!-- Hero -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
+            <div>
+                <h2 class="text-5xl font-bold heading-serif tracking-tighter">Blog Enhancement Hub</h2>
+                <p class="text-xl text-[#aaa] mt-2">Interactive tools for your readers • Deploy once, embed anywhere</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <div class="inline-flex items-center gap-x-2 text-xs px-3 py-1 bg-[#1a1a1a] rounded-full">
+                    <span>Ready for GitHub Pages + Blogger</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap gap-1 mb-8 border-b border-[#333] pb-1">
+            <button onclick="showSection('home')" class="nav-tab active px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-home">
+                <i class="fa-solid fa-home w-4"></i> 
+                <span>Home</span>
+            </button>
+            <button onclick="showSection('dosage')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-dosage">
+                <i class="fa-solid fa-calculator w-4"></i> 
+                <span>Dosage</span>
+            </button>
+            <button onclick="showSection('matcher')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-matcher">
+                <i class="fa-solid fa-leaf w-4"></i> 
+                <span>Strain Matcher</span>
+            </button>
+            <button onclick="showSection('customizer')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-customizer">
+                <i class="fa-solid fa-magic w-4"></i> 
+                <span>Recipe Customizer</span>
+            </button>
+            <button onclick="showSection('timer')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-timer">
+                <i class="fa-solid fa-clock w-4"></i> 
+                <span>Decarb Timer</span>
+            </button>
+            <button onclick="showSection('quiz')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-quiz">
+                <i class="fa-solid fa-question-circle w-4"></i> 
+                <span>Edible Quiz</span>
+            </button>
+            <button onclick="showSection('seo')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-seo">
+                <i class="fa-solid fa-search w-4"></i> 
+                <span>SEO Schema</span>
+            </button>
+            <button onclick="showSection('forms')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-forms">
+                <i class="fa-solid fa-envelope w-4"></i> 
+                <span>Forms</span>
+            </button>
+        </div>
+
+        <!-- HOME SECTION -->
+        <div id="home" class="tool-section active">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Quick Stats -->
+                <div class="gourmet-card p-6 rounded-2xl md:col-span-1">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm text-[#888]">TOOLS READY</p>
+                            <p class="text-6xl font-bold mt-1">8</p>
+                        </div>
+                        <i class="fa-solid fa-rocket text-4xl text-[#d4af37]"></i>
+                    </div>
+                    <p class="mt-6 text-sm">All tools are self-contained. Deploy to GitHub Pages in one click and embed in Blogger with a single iframe.</p>
+                </div>
+                
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div onclick="showSection('dosage')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-calculator text-2xl text-emerald-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Dosage Calculator</h4>
+                                <p class="text-xs text-[#888]">Safe, accurate THC/CBD dosing</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div onclick="showSection('matcher')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-leaf text-2xl text-emerald-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Strain &amp; Terpene Matcher</h4>
+                                <p class="text-xs text-[#888]">Match effects to recipes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div onclick="showSection('timer')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-clock text-2xl text-emerald-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Decarb Timer</h4>
+                                <p class="text-xs text-[#888]">Precise 240°F / 35 min timer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div onclick="showSection('quiz')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-question-circle text-2xl text-emerald-400"></i>
+                            <div>
+                                <h4 class="font-semibold">Edible Personality Quiz</h4>
+                                <p class="text-xs text-[#888]">Recommend perfect recipe type</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-xs text-[#666]">
+                Built for Gourmet Edibles blog • Chef Smoke • All tools are 100% client-side • No data collected
+            </div>
+        </div>
+
+        <!-- DOSAGE CALCULATOR -->
+        <div id="dosage" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
+                <div class="flex items-center gap-x-3 mb-6">
+                    <i class="fa-solid fa-calculator text-3xl text-emerald-400"></i>
+                    <h3 class="text-3xl font-semibold">Dosage Calculator</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Target THC per serving (mg)</label>
+                        <input id="target-mg" type="number" value="10" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Number of servings</label>
+                        <input id="servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % in your infusion (e.g. 15 for 15%)</label>
+                        <input id="thc-percent" type="number" value="15" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Total infusion volume (ml or grams)</label>
+                        <input id="volume" type="number" value="100" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                </div>
+                
+                <button onclick="calculateDosage()" 
+                        class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>CALCULATE DOSAGE</span>
+                </button>
+                
+                <div id="dosage-result" class="mt-6 hidden result-box p-6 rounded-2xl">
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <p class="text-xs text-[#888]">THC PER SERVING</p>
+                            <p id="result-per-serving" class="metric text-emerald-400"></p>
+                            <p class="text-xs">mg</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#888]">TOTAL THC IN BATCH</p>
+                            <p id="result-total" class="metric text-emerald-400"></p>
+                            <p class="text-xs">mg</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs safety-note">
+                        Always start low (2.5–5mg) and wait 2+ hours. This is an estimate only. Consult local laws.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STRAIN MATCHER -->
+        <div id="matcher" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
+                <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
+                    <i class="fa-solid fa-leaf text-emerald-400"></i> 
+                    <span>Strain &amp; Terpene Matcher</span>
+                </h3>
+                <p class="text-[#aaa] mb-6">Select desired effects for your recipe. Get 3 perfect strain recommendations.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-relax" class="accent-[#d4af37]"> <span>Relax / Sleep</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-focus" class="accent-[#d4af37]"> <span>Focus / Creativity</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Mood</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
+                    </label>
+                </div>
+                
+                <button onclick="matchStrains()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY STRAINS</button>
+                
+                <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 hidden"></div>
+            </div>
+        </div>
+
+        <!-- RECIPE CUSTOMIZER -->
+        <div id="customizer" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
+                <h3 class="text-3xl font-semibold mb-6">Recipe Customizer</h3>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label class="text-sm">Base Recipe</label>
+                        <select id="base-recipe" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                            <option>Classic Canna-Chocolate Chip Cookies</option>
+                            <option>Gourmet CBD Brownies</option>
+                            <option>Chicago Deep Dish Pizza (Infused)</option>
+                            <option>Terpene-Infused Gummies</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-sm">Desired THC (mg per serving)</label>
+                            <input type="number" id="custom-thc" value="8" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        </div>
+                        <div>
+                            <label class="text-sm">Servings</label>
+                            <input type="number" id="custom-servings" value="16" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="customizeRecipe()" class="mt-6 w-full bg-[#d4af37] text-[#111] py-4 rounded-2xl font-semibold">GENERATE CUSTOM RECIPE</button>
+                
+                <div id="custom-result" class="mt-6 hidden result-box p-6 rounded-2xl text-sm"></div>
+            </div>
+        </div>
+
+        <!-- DECARB TIMER -->
+        <div id="timer" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-md mx-auto text-center">
+                <h3 class="text-3xl font-semibold mb-2">Decarb Timer</h3>
+                <p class="text-[#aaa] mb-8">240°F (115°C) • 30–40 minutes</p>
+                
+                <div class="text-7xl font-mono font-bold mb-2" id="timer-display">35:00</div>
+                <div class="text-emerald-400 text-sm mb-8">RECOMMENDED FOR MOST FLOWER</div>
+                
+                <div class="flex justify-center gap-x-3">
+                    <button onclick="startTimer()" class="px-8 py-3 bg-emerald-600 rounded-2xl font-semibold flex-1">START</button>
+                    <button onclick="pauseTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">PAUSE</button>
+                    <button onclick="resetTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">RESET</button>
+                </div>
+                
+                <div class="mt-8 text-left text-xs text-[#777]">
+                    <strong>Steps:</strong><br>
+                    1. Preheat oven to 240°F<br>
+                    2. Break up flower, spread on parchment<br>
+                    3. Bake 30–40 min, stir halfway<br>
+                    4. Cool completely before infusing
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIBLE QUIZ -->
+        <div id="quiz" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-lg mx-auto">
+                <h3 class="text-3xl font-semibold mb-6">What's Your Perfect Edible?</h3>
+                
+                <div id="quiz-content">
+                    <!-- JS populates questions -->
+                </div>
+                
+                <div id="quiz-result" class="hidden mt-6 p-6 bg-[#111] rounded-2xl">
+                    <h4 class="font-semibold text-xl mb-2" id="quiz-recommendation"></h4>
+                    <p id="quiz-description" class="text-sm"></p>
+                    <button onclick="restartQuiz()" class="mt-4 text-xs underline">Take quiz again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO SCHEMA GENERATOR -->
+        <div id="seo" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
+                <h3 class="text-3xl font-semibold mb-6">Recipe SEO Schema Generator</h3>
+                <p class="text-sm text-[#aaa] mb-6">Generate JSON-LD for Google rich results. Paste into Blogger HTML view.</p>
+                
+                <div class="space-y-4">
+                    <input id="seo-title" placeholder="Recipe Title" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3" value="Gourmet Canna-Infused Chocolate Chip Cookies">
+                    <textarea id="seo-ingredients" placeholder="Ingredients (one per line)" class="w-full h-24 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm">2 cups all-purpose flour
+1 cup cannabis-infused butter
+1 cup brown sugar
+2 eggs</textarea>
+                    <textarea id="seo-instructions" placeholder="Instructions (one step per line)" class="w-full h-24 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm">Preheat oven to 375°F
+Mix dry ingredients
+Cream butter and sugar
+Bake 10-12 minutes</textarea>
+                </div>
+                
+                <button onclick="generateSchema()" class="mt-6 w-full bg-white text-[#111] py-4 rounded-2xl font-semibold">GENERATE JSON-LD</button>
+                
+                <div id="seo-output" class="mt-6 hidden">
+                    <pre class="result-box p-4 text-xs overflow-auto max-h-64 rounded-2xl"><code id="seo-json"></code></pre>
+                    <button onclick="copySchema()" class="mt-2 text-xs flex items-center gap-x-1 text-emerald-400"><i class="fa-solid fa-copy"></i> <span>Copy to clipboard</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMS -->
+        <div id="forms" class="tool-section">
+            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
+                <h3 class="text-3xl font-semibold mb-6">Email Signup &amp; Forms</h3>
+                
+                <div class="mb-8">
+                    <h4 class="font-semibold mb-3">Gourmet Gazette Signup (Embed in Blogger)</h4>
+                    <pre class="bg-[#111] p-4 text-xs rounded-2xl overflow-auto"><code>&lt;form action="https://yourlist.com/subscribe" method="post"&gt;
+  &lt;input type="email" name="email" placeholder="your@email.com" required&gt;
+  &lt;button type="submit"&gt;Join the Gazette&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    <button onclick="copyFormCode()" class="mt-2 text-xs text-emerald-400 flex items-center gap-x-1"><i class="fa-solid fa-copy"></i> Copy form code</button>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-3">Quick Contact / Feedback Form</h4>
+                    <div class="bg-[#111] p-5 rounded-2xl">
+                        <input type="text" placeholder="Name" class="w-full mb-3 bg-transparent border border-[#444] rounded px-4 py-2 text-sm">
+                        <input type="email" placeholder="Email" class="w-full mb-3 bg-transparent border border-[#444] rounded px-4 py-2 text-sm">
+                        <textarea placeholder="Message or recipe idea" class="w-full h-20 bg-transparent border border-[#444] rounded px-4 py-2 text-sm"></textarea>
+                        <button class="mt-3 w-full bg-[#d4af37] text-[#111] py-2.5 text-sm font-semibold rounded-xl">Send to Chef Smoke</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="text-center text-xs text-[#555] py-8 border-t border-[#222]">
+        Gourmet Edibles Hub • Built for Chef Smoke • All calculations are estimates • Always follow local laws
+    </footer>
+
+    <script>
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#d4af37');
+        }
+        
+        function showSection(section) {
+            document.querySelectorAll('.tool-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(section).classList.add('active');
+            document.getElementById('tab-' + section).classList.add('active');
+            
+            if (section === 'quiz' && !document.getElementById('quiz-content').innerHTML) {
+                initQuiz();
+            }
+        }
+        
+        function calculateDosage() {
+            const targetMg = parseFloat(document.getElementById('target-mg').value) || 10;
+            const servings = parseFloat(document.getElementById('servings').value) || 12;
+            const thcPercent = parseFloat(document.getElementById('thc-percent').value) || 15;
+            const volume = parseFloat(document.getElementById('volume').value) || 100;
+            
+            const totalThc = (thcPercent / 100) * volume * 10;
+            const perServing = totalThc / servings;
+            
+            document.getElementById('result-per-serving').textContent = perServing.toFixed(1);
+            document.getElementById('result-total').textContent = totalThc.toFixed(0);
+            document.getElementById('dosage-result').classList.remove('hidden');
+        }
+        
+        function matchStrains() {
+            const resultsDiv = document.getElementById('matcher-results');
+            resultsDiv.innerHTML = '';
+            resultsDiv.classList.remove('hidden');
+            
+            const effects = [];
+            if (document.getElementById('effect-relax').checked) effects.push('relax');
+            if (document.getElementById('effect-focus').checked) effects.push('focus');
+            if (document.getElementById('effect-euphoria').checked) effects.push('euphoria');
+            if (document.getElementById('effect-pain').checked) effects.push('pain');
+            
+            let recommendations = [];
+            
+            if (effects.includes('relax') || effects.length === 0) {
+                recommendations.push({name: "Granddaddy Purple", terps: "Myrcene, Linalool", why: "Deep body relaxation, perfect for evening edibles"});
+            }
+            if (effects.includes('focus')) {
+                recommendations.push({name: "Sour Diesel", terps: "Limonene, Caryophyllene", why: "Uplifting, great for creative cooking sessions"});
+            }
+            if (effects.includes('euphoria')) {
+                recommendations.push({name: "Blue Dream", terps: "Myrcene, Pinene", why: "Balanced euphoria with gentle body effects"});
+            }
+            if (effects.includes('pain')) {
+                recommendations.push({name: "OG Kush", terps: "Limonene, Caryophyllene", why: "Strong body high, excellent for pain relief recipes"});
+            }
+            
+            if (recommendations.length === 0) recommendations = [{name: "Wedding Cake", terps: "Limonene, Caryophyllene", why: "Versatile hybrid great for most gourmet infusions"}];
+            
+            recommendations.slice(0,3).forEach(rec => {
+                const card = document.createElement('div');
+                card.className = 'bg-[#111] p-4 rounded-2xl border border-[#333]';
+                card.innerHTML = `
+                    <div class="font-semibold text-emerald-400">${rec.name}</div>
+                    <div class="text-xs text-[#888] mt-1">${rec.terps}</div>
+                    <div class="text-sm mt-3">${rec.why}</div>
+                `;
+                resultsDiv.appendChild(card);
+            });
+        }
+        
+        function customizeRecipe() {
+            const base = document.getElementById('base-recipe').value;
+            const thc = document.getElementById('custom-thc').value;
+            const servings = document.getElementById('custom-servings').value;
+            
+            const result = document.getElementById('custom-result');
+            result.innerHTML = `
+                <h4 class="font-semibold mb-2">${base} — Custom Version</h4>
+                <p class="text-sm">Target: <strong>${thc}mg THC</strong> per serving • Makes <strong>${servings}</strong> servings</p>
+                <div class="mt-4 text-xs">
+                    <strong>Chef Smoke Tip:</strong> Use 15-20% more infused butter than standard recipe for even distribution. 
+                    Pair with complementary terpenes like Limonene for brighter flavor.
+                </div>
+                <div class="mt-3 text-[10px] text-[#666]">Full custom recipe steps available in your next Gourmet Gazette issue.</div>
+            `;
+            result.classList.remove('hidden');
+        }
+        
+        let timerInterval = null;
+        let timeLeft = 35 * 60;
+        
+        function updateTimerDisplay() {
+            const min = Math.floor(timeLeft / 60);
+            const sec = timeLeft % 60;
+            document.getElementById('timer-display').textContent = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+        }
+        
+        function startTimer() {
+            if (timerInterval) return;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Decarb complete! Remove from oven and let cool completely.");
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timeLeft = 35 * 60;
+            updateTimerDisplay();
+        }
+        
+        let currentQuestion = 0;
+        let score = 0;
+        const questions = [
+            { q: "What kind of experience are you looking for?", options: ["Deep relaxation", "Creative energy", "Social & euphoric", "Functional focus"], scores: [3,1,2,0] },
+            { q: "Preferred flavor profile?", options: ["Sweet & dessert", "Savory / umami", "Fruity & bright", "Earthy & herbal"], scores: [2,3,1,0] },
+            { q: "How experienced are you with edibles?", options: ["Beginner (start low)", "Intermediate", "Experienced", "Daily user"], scores: [0,1,2,3] }
+        ];
+        
+        function initQuiz() {
+            const container = document.getElementById('quiz-content');
+            container.innerHTML = '';
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            const container = document.getElementById('quiz-content');
+            const q = questions[currentQuestion];
+            
+            let html = `<div class="mb-4"><p class="font-medium">${q.q}</p></div>`;
+            
+            q.options.forEach((opt, i) => {
+                html += `<button onclick="answerQuestion(${i})" class="block w-full text-left px-4 py-3 mb-2 bg-[#1f1f1f] hover:bg-[#333] rounded-xl text-sm">${opt}</button>`;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function answerQuestion(optionIndex) {
+            score += questions[currentQuestion].scores[optionIndex];
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+        
+        function showQuizResult() {
+            const container = document.getElementById('quiz-content');
+            const resultBox = document.getElementById('quiz-result');
+            
+            container.style.display = 'none';
+            resultBox.classList.remove('hidden');
+            
+            let rec = "Classic Canna-Chocolate";
+            let desc = "Balanced and crowd-pleasing. Great starter recipe.";
+            
+            if (score >= 7) {
+                rec = "Gourmet Savory Infused Dish";
+                desc = "You enjoy bold flavors and stronger experiences. Try infused pasta or Chicago-style deep dish.";
+            } else if (score >= 5) {
+                rec = "Terpene-Forward Gummies";
+                desc = "You appreciate nuanced effects. Focus on specific terpene pairings.";
+            } else if (score >= 3) {
+                rec = "Premium Chocolate or Brownies";
+                desc = "Sweet tooth with moderate tolerance. Perfect for elegant dinner parties.";
+            }
+            
+            document.getElementById('quiz-recommendation').textContent = rec;
+            document.getElementById('quiz-description').textContent = desc;
+        }
+        
+        function restartQuiz() {
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-content').style.display = 'block';
+            initQuiz();
+        }
+        
+        function generateSchema() {
+            const title = document.getElementById('seo-title').value || "Gourmet Recipe";
+            const ingredients = document.getElementById('seo-ingredients').value.split('\n').filter(Boolean);
+            const instructions = document.getElementById('seo-instructions').value.split('\n').filter(Boolean);
+            
+            const schema = {
+                "@context": "https://schema.org/",
+                "@type": "Recipe",
+                "name": title,
+                "author": { "@type": "Person", "name": "Chef Smoke" },
+                "description": "Gourmet cannabis-infused recipe from Gourmet Edibles.",
+                "recipeIngredient": ingredients,
+                "recipeInstructions": instructions.map((step, i) => ({
+                    "@type": "HowToStep",
+                    "position": i + 1,
+                    "text": step
+                })),
+                "suitableForDiet": "https://schema.org/GlutenFreeDiet"
+            };
+            
+            const output = document.getElementById('seo-json');
+            output.textContent = JSON.stringify(schema, null, 2);
+            document.getElementById('seo-output').classList.remove('hidden');
+        }
+        
+        function copySchema() {
+            const text = document.getElementById('seo-json').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("JSON-LD copied! Paste into Blogger HTML mode.");
+            });
+        }
+        
+        function copyFormCode() {
+            const code = `<form action="https://enginemailer.com/subscribe/YOUR-ID" method="post">
+  <input type="email" name="email" placeholder="your@email.com" required style="padding:12px; width:100%; border-radius:9999px; border:1px solid #444; background:#111; color:white;">
+  <button type="submit" style="margin-top:8px; background:#d4af37; color:#111; padding:12px 24px; border-radius:9999px; font-weight:600;">Join Gourmet Gazette</button>
+</form>`;
+            navigator.clipboard.writeText(code).then(() => alert("Form code copied!"));
+        }
+        
+        function copyEmbedCode() {
+            const code = `<iframe src="https://smokedighity.github.io/gourmet-edibles-hub/" width="100%" height="800" frameborder="0" style="border-radius: 20px; max-width: 100%;"></iframe>`;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Embed code copied! Paste into Blogger HTML view.");
+            });
+        }
+        
+        function initApp() {
+            initializeTailwind();
+            document.getElementById('home').classList.add('active');
+            document.getElementById('tab-home').classList.add('active');
+            updateTimerDisplay();
+            console.log('%c[Gourmet Edibles Hub] All tools initialized. Ready for GitHub Pages deployment.', 'color:#666');
+        }
+        
+        window.onload = initApp;
+    </script>
+</body>
+</html>
