@@ -145,13 +145,13 @@
                 <i class="fa-solid fa-question-circle w-4"></i> 
                 <span>Edible Quiz</span>
             </button>
-            <button onclick="showSection('seo')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-seo">
-                <i class="fa-solid fa-search w-4"></i> 
-                <span>SEO Schema</span>
+            <button onclick="showSection('infusion')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-infusion">
+                <i class="fa-solid fa-flask w-4"></i> 
+                <span>Infusion Calculator</span>
             </button>
-            <button onclick="showSection('forms')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-forms">
-                <i class="fa-solid fa-envelope w-4"></i> 
-                <span>Forms</span>
+            <button onclick="showSection('scaler')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-scaler">
+                <i class="fa-solid fa-balance-scale w-4"></i> 
+                <span>Recipe Scaler</span>
             </button>
         </div>
 
@@ -200,12 +200,12 @@
                         </div>
                     </div>
                     
-                    <div onclick="showSection('quiz')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
+                    <div onclick="showSection('infusion')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
                         <div class="flex items-center gap-x-3">
-                            <i class="fa-solid fa-question-circle text-2xl text-emerald-400"></i>
+                            <i class="fa-solid fa-flask text-2xl text-emerald-400"></i>
                             <div>
-                                <h4 class="font-semibold">Find Your Perfect Edible</h4>
-                                <p class="text-xs text-[#888]">Quick quiz that recommends the right recipe style for you</p>
+                                <h4 class="font-semibold">Infusion Strength</h4>
+                                <p class="text-xs text-[#888]">Calculate exact potency of your oil or butter</p>
                             </div>
                         </div>
                     </div>
@@ -343,56 +343,84 @@
             </div>
         </div>
 
-        <!-- SEO SCHEMA GENERATOR -->
-        <div id="seo" class="tool-section">
+        <!-- INFUSION CALCULATOR (NEW) -->
+        <div id="infusion" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <h3 class="text-3xl font-semibold mb-6">SEO Schema for Your Recipes</h3>
-                <p class="text-sm text-[#aaa] mb-6">Generate Google-friendly code so your recipes show up beautifully in search.</p>
+                <div class="flex items-center gap-x-3 mb-6">
+                    <i class="fa-solid fa-flask text-3xl text-emerald-400"></i>
+                    <h3 class="text-3xl font-semibold">Infusion Strength Calculator</h3>
+                </div>
+                <p class="text-sm text-[#aaa] mb-6">Calculate exactly how strong your infused oil or butter will be.</p>
                 
-                <div class="space-y-4">
-                    <input id="seo-title" placeholder="Recipe Title" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3" value="Gourmet Canna-Infused Chocolate Chip Cookies">
-                    <textarea id="seo-ingredients" placeholder="Ingredients (one per line)" class="w-full h-24 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm">2 cups all-purpose flour
-1 cup cannabis-infused butter
-1 cup brown sugar
-2 eggs</textarea>
-                    <textarea id="seo-instructions" placeholder="Instructions (one step per line)" class="w-full h-24 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm">Preheat oven to 375°F
-Mix dry ingredients
-Cream butter and sugar
-Bake 10-12 minutes</textarea>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Grams of flower/decarb</label>
+                        <input id="flower-grams" type="number" value="10" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % of flower</label>
+                        <input id="flower-thc" type="number" value="20" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">ml or grams of oil/butter</label>
+                        <input id="oil-ml" type="number" value="100" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
                 </div>
                 
-                <button onclick="generateSchema()" class="mt-6 w-full bg-white text-[#111] py-4 rounded-2xl font-semibold">GENERATE CODE</button>
+                <button onclick="calculateInfusion()" class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>CALCULATE POTENCY</span>
+                </button>
                 
-                <div id="seo-output" class="mt-6 hidden">
-                    <pre class="result-box p-4 text-xs overflow-auto max-h-64 rounded-2xl"><code id="seo-json"></code></pre>
-                    <button onclick="copySchema()" class="mt-2 text-xs flex items-center gap-x-1 text-emerald-400"><i class="fa-solid fa-copy"></i> <span>Copy code</span></button>
+                <div id="infusion-result" class="mt-6 hidden result-box p-6 rounded-2xl">
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <p class="text-xs text-[#888]">MG THC PER ML</p>
+                            <p id="infusion-per-ml" class="metric text-emerald-400"></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-[#888]">MG THC PER TSP (5ml)</p>
+                            <p id="infusion-per-tsp" class="metric text-emerald-400"></p>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs safety-note">Estimate only. Actual results vary with decarboxylation efficiency and extraction method.</div>
                 </div>
             </div>
         </div>
 
-        <!-- FORMS -->
-        <div id="forms" class="tool-section">
+        <!-- RECIPE SCALER (NEW) -->
+        <div id="scaler" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <h3 class="text-3xl font-semibold mb-6">Ready-to-use Forms for Your Blog</h3>
-                
-                <div class="mb-8">
-                    <h4 class="font-semibold mb-3">Gourmet Gazette Email Signup</h4>
-                    <pre class="bg-[#111] p-4 text-xs rounded-2xl overflow-auto"><code>&lt;form action="https://yourlist.com/subscribe" method="post"&gt;
-  &lt;input type="email" name="email" placeholder="your@email.com" required style="padding:12px; width:100%; border-radius:9999px; border:1px solid #444; background:#111; color:white;"&gt;
-  &lt;button type="submit" style="margin-top:8px; background:#d4af37; color:#111; padding:12px 24px; border-radius:9999px; font-weight:600;"&gt;Join the Gazette&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-                    <button onclick="copyFormCode()" class="mt-2 text-xs text-emerald-400 flex items-center gap-x-1"><i class="fa-solid fa-copy"></i> Copy code</button>
+                <div class="flex items-center gap-x-3 mb-6">
+                    <i class="fa-solid fa-balance-scale text-3xl text-emerald-400"></i>
+                    <h3 class="text-3xl font-semibold">Recipe Scaler</h3>
                 </div>
+                <p class="text-sm text-[#aaa] mb-6">Scale any recipe up or down easily.</p>
                 
-                <div>
-                    <h4 class="font-semibold mb-3">Quick Feedback Form</h4>
-                    <div class="bg-[#111] p-5 rounded-2xl">
-                        <input type="text" placeholder="Your name" class="w-full mb-3 bg-transparent border border-[#444] rounded px-4 py-2 text-sm">
-                        <input type="email" placeholder="Email" class="w-full mb-3 bg-transparent border border-[#444] rounded px-4 py-2 text-sm">
-                        <textarea placeholder="Recipe idea or question for Chef Smoke" class="w-full h-20 bg-transparent border border-[#444] rounded px-4 py-2 text-sm"></textarea>
-                        <button class="mt-3 w-full bg-[#d4af37] text-[#111] py-2.5 text-sm font-semibold rounded-xl">Send Message</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Original number of servings</label>
+                        <input id="original-servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">New number of servings</label>
+                        <input id="new-servings" type="number" value="24" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                 </div>
+                
+                <div class="mt-4">
+                    <label class="block text-sm mb-1.5 text-[#aaa]">Ingredients (one per line, with amounts)</label>
+                    <textarea id="ingredients-list" class="w-full h-32 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm" placeholder="2 cups flour
+1 cup sugar
+3 eggs"></textarea>
+                </div>
+                
+                <button onclick="scaleRecipe()" class="mt-6 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-balance-scale"></i>
+                    <span>SCALE RECIPE</span>
+                </button>
+                
+                <div id="scaler-result" class="mt-6 hidden result-box p-6 rounded-2xl text-sm whitespace-pre-line"></div>
             </div>
         </div>
 
@@ -577,44 +605,49 @@ Bake 10-12 minutes</textarea>
             initQuiz();
         }
         
-        function generateSchema() {
-            const title = document.getElementById('seo-title').value || "Gourmet Recipe";
-            const ingredients = document.getElementById('seo-ingredients').value.split('\n').filter(Boolean);
-            const instructions = document.getElementById('seo-instructions').value.split('\n').filter(Boolean);
+        function calculateInfusion() {
+            const flower = parseFloat(document.getElementById('flower-grams').value) || 10;
+            const thcPercent = parseFloat(document.getElementById('flower-thc').value) || 20;
+            const oil = parseFloat(document.getElementById('oil-ml').value) || 100;
             
-            const schema = {
-                "@context": "https://schema.org/",
-                "@type": "Recipe",
-                "name": title,
-                "author": { "@type": "Person", "name": "Chef Smoke" },
-                "description": "Gourmet cannabis-infused recipe from Gourmet Edibles.",
-                "recipeIngredient": ingredients,
-                "recipeInstructions": instructions.map((step, i) => ({
-                    "@type": "HowToStep",
-                    "position": i + 1,
-                    "text": step
-                })),
-                "suitableForDiet": "https://schema.org/GlutenFreeDiet"
-            };
+            const totalThc = flower * (thcPercent / 100) * 1000; // rough, assuming good extraction
+            const perMl = totalThc / oil;
+            const perTsp = perMl * 5;
             
-            const output = document.getElementById('seo-json');
-            output.textContent = JSON.stringify(schema, null, 2);
-            document.getElementById('seo-output').classList.remove('hidden');
+            document.getElementById('infusion-per-ml').textContent = perMl.toFixed(1);
+            document.getElementById('infusion-per-tsp').textContent = perTsp.toFixed(1);
+            document.getElementById('infusion-result').classList.remove('hidden');
         }
         
-        function copySchema() {
-            const text = document.getElementById('seo-json').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("JSON-LD copied! Paste into Blogger HTML mode.");
+        function scaleRecipe() {
+            const original = parseFloat(document.getElementById('original-servings').value) || 12;
+            const newServings = parseFloat(document.getElementById('new-servings').value) || 24;
+            const ingredientsText = document.getElementById('ingredients-list').value;
+            
+            if (!ingredientsText) {
+                alert("Please enter some ingredients");
+                return;
+            }
+            
+            const multiplier = newServings / original;
+            const lines = ingredientsText.split('\n').filter(line => line.trim());
+            
+            let result = `Scaled from ${original} to ${newServings} servings (x${multiplier.toFixed(2)})\n\n`;
+            
+            lines.forEach(line => {
+                const match = line.match(/^([0-9.]+)\s*(.*)$/);
+                if (match) {
+                    const amount = parseFloat(match[1]);
+                    const unitAndName = match[2];
+                    const newAmount = (amount * multiplier).toFixed(1);
+                    result += `${newAmount} ${unitAndName}\n`;
+                } else {
+                    result += `${line} (scale manually)\n`;
+                }
             });
-        }
-        
-        function copyFormCode() {
-            const code = `<form action="https://enginemailer.com/subscribe/YOUR-ID" method="post">
-  <input type="email" name="email" placeholder="your@email.com" required style="padding:12px; width:100%; border-radius:9999px; border:1px solid #444; background:#111; color:white;">
-  <button type="submit" style="margin-top:8px; background:#d4af37; color:#111; padding:12px 24px; border-radius:9999px; font-weight:600;">Join Gourmet Gazette</button>
-</form>`;
-            navigator.clipboard.writeText(code).then(() => alert("Form code copied!"));
+            
+            document.getElementById('scaler-result').innerHTML = result;
+            document.getElementById('scaler-result').classList.remove('hidden');
         }
         
         function copyEmbedCode() {
@@ -629,7 +662,7 @@ Bake 10-12 minutes</textarea>
             document.getElementById('home').classList.add('active');
             document.getElementById('tab-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Recipe Customizer removed. 7 tools remaining.', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Updated with Infusion Calculator + Recipe Scaler for home cooks.', 'color:#666');
         }
         
         window.onload = initApp;
