@@ -32,11 +32,11 @@
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
         }
 
-        .nav-tab {
+        .nav-item {
             transition: all 0.2s ease;
         }
         
-        .nav-tab.active {
+        .nav-item.active {
             background-color: #d4af37;
             color: #111;
             font-weight: 600;
@@ -53,25 +53,6 @@
         .result-box {
             background: #111;
             border: 1px solid #444;
-        }
-
-        .cannabis-green {
-            color: #4ade80;
-        }
-
-        .gold-accent {
-            color: #d4af37;
-        }
-
-        .section-header {
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 0.5rem;
-        }
-
-        .metric {
-            font-size: 1.5rem;
-            line-height: 1;
-            font-weight: 700;
         }
 
         .safety-note {
@@ -103,385 +84,355 @@
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 pt-8 pb-16">
-        
-        <!-- Hero -->
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
-            <div>
-                <h2 class="text-5xl font-bold heading-serif tracking-tighter">Chef Smoke's Kitchen Tools</h2>
-                <p class="text-xl text-[#aaa] mt-2">Simple calculators and guides to make your cannabis edibles perfect every time.</p>
-            </div>
-            <div class="mt-4 md:mt-0 text-right">
-                <div class="inline-flex items-center gap-x-2 text-xs px-3 py-1 bg-[#1a1a1a] rounded-full">
-                    <span>Free • No sign-up • Works on any device</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation Tabs -->
-        <div class="flex flex-wrap gap-1 mb-8 border-b border-[#333] pb-1">
-            <button onclick="showSection('home')" class="nav-tab active px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-home">
-                <i class="fa-solid fa-home w-4"></i> 
-                <span>Home</span>
-            </button>
-            <button onclick="showSection('dosage')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-dosage">
-                <i class="fa-solid fa-calculator w-4"></i> 
-                <span>Dosage</span>
-            </button>
-            <button onclick="showSection('matcher')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-matcher">
-                <i class="fa-solid fa-leaf w-4"></i> 
-                <span>Strain Matcher</span>
-            </button>
-            <button onclick="showSection('timer')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-timer">
-                <i class="fa-solid fa-clock w-4"></i> 
-                <span>Decarb Timer</span>
-            </button>
-            <button onclick="showSection('quiz')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-quiz">
-                <i class="fa-solid fa-question-circle w-4"></i> 
-                <span>Edible Quiz</span>
-            </button>
-            <button onclick="showSection('infusion')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-infusion">
-                <i class="fa-solid fa-flask w-4"></i> 
-                <span>Infusion Calculator</span>
-            </button>
-            <button onclick="showSection('scaler')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-scaler">
-                <i class="fa-solid fa-balance-scale w-4"></i> 
-                <span>Recipe Scaler</span>
-            </button>
-        </div>
-
-        <!-- HOME SECTION -->
-        <div id="home" class="tool-section active">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="gourmet-card p-6 rounded-2xl md:col-span-1">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-sm text-[#888]">7 TOOLS READY</p>
-                            <p class="text-6xl font-bold mt-1">Instant</p>
-                        </div>
-                        <i class="fa-solid fa-rocket text-4xl text-[#d4af37]"></i>
-                    </div>
-                    <p class="mt-6 text-sm">No downloads. No accounts. Just open and use while you cook. Designed for home chefs who want precise, delicious results every time.</p>
-                </div>
-                
-                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div onclick="showSection('dosage')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
-                        <div class="flex items-center gap-x-3">
-                            <i class="fa-solid fa-calculator text-2xl text-emerald-400"></i>
-                            <div>
-                                <h4 class="font-semibold">Perfect Dose Every Time</h4>
-                                <p class="text-xs text-[#888]">Know exactly how much THC lands in each serving</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="showSection('matcher')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
-                        <div class="flex items-center gap-x-3">
-                            <i class="fa-solid fa-leaf text-2xl text-emerald-400"></i>
-                            <div>
-                                <h4 class="font-semibold">Match Strains to Your Mood</h4>
-                                <p class="text-xs text-[#888]">Pick effects, get the right strains for your recipe</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="showSection('timer')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
-                        <div class="flex items-center gap-x-3">
-                            <i class="fa-solid fa-clock text-2xl text-emerald-400"></i>
-                            <div>
-                                <h4 class="font-semibold">Decarb with Confidence</h4>
-                                <p class="text-xs text-[#888]">Simple timer + exact steps for perfect activation</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="showSection('infusion')" class="gourmet-card p-5 rounded-2xl cursor-pointer hover:border-[#d4af37]">
-                        <div class="flex items-center gap-x-3">
-                            <i class="fa-solid fa-flask text-2xl text-emerald-400"></i>
-                            <div>
-                                <h4 class="font-semibold">Infusion Strength</h4>
-                                <p class="text-xs text-[#888]">Calculate exact potency of your oil or butter</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="max-w-7xl mx-auto px-6 pt-6 pb-16">
+        <div class="flex flex-col lg:flex-row gap-8">
             
-            <div class="mt-8 text-center text-xs text-[#666]">
-                Built by Chef Smoke for home cooks who love great food and great cannabis • All tools work right here in your browser
-            </div>
-        </div>
-
-        <!-- DOSAGE CALCULATOR (American units) -->
-        <div id="dosage" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <div class="flex items-center gap-x-3 mb-6">
-                    <i class="fa-solid fa-calculator text-3xl text-emerald-400"></i>
-                    <h3 class="text-3xl font-semibold">Dosage Calculator</h3>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Target THC per serving (mg)</label>
-                        <input id="target-mg" type="number" value="10" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
-                    </div>
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Number of servings</label>
-                        <input id="servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+            <!-- VERTICAL NAV - Best order for home cooks -->
+            <div class="lg:w-72 flex-shrink-0">
+                <div class="sticky top-6">
+                    <h3 class="text-sm font-semibold text-[#888] mb-3 px-3">COOKING FLOW</h3>
+                    
+                    <div onclick="showSection('timer')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-timer">
+                        <i class="fa-solid fa-clock w-5 text-emerald-400"></i>
+                        <span>1. Decarb Timer</span>
                     </div>
                     
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % in your infusion</label>
-                        <input id="thc-percent" type="number" value="15" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    <div onclick="showSection('infusion')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-infusion">
+                        <i class="fa-solid fa-flask w-5 text-emerald-400"></i>
+                        <span>2. Infusion Calculator</span>
                     </div>
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Total infusion volume (fl oz or oz)</label>
-                        <input id="volume" type="number" value="3.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                    
+                    <div onclick="showSection('dosage')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-dosage">
+                        <i class="fa-solid fa-calculator w-5 text-emerald-400"></i>
+                        <span>3. Dosage Calculator</span>
+                    </div>
+                    
+                    <div onclick="showSection('matcher')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-matcher">
+                        <i class="fa-solid fa-leaf w-5 text-emerald-400"></i>
+                        <span>4. Strain Matcher</span>
+                    </div>
+                    
+                    <div onclick="showSection('scaler')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-scaler">
+                        <i class="fa-solid fa-balance-scale w-5 text-emerald-400"></i>
+                        <span>5. Recipe Scaler</span>
+                    </div>
+                    
+                    <div onclick="showSection('quiz')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mb-1 cursor-pointer hover:bg-[#1f1f1f]" id="nav-quiz">
+                        <i class="fa-solid fa-question-circle w-5 text-emerald-400"></i>
+                        <span>6. Edible Quiz</span>
+                    </div>
+                    
+                    <div onclick="showSection('home')" class="nav-item flex items-center gap-x-3 px-4 py-3 rounded-2xl mt-4 cursor-pointer hover:bg-[#1f1f1f]" id="nav-home">
+                        <i class="fa-solid fa-home w-5 text-[#d4af37]"></i>
+                        <span class="font-medium">Overview</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="flex-1 min-w-0">
                 
-                <button onclick="calculateDosage()" 
-                        class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
-                    <i class="fa-solid fa-calculator"></i>
-                    <span>CALCULATE DOSAGE</span>
-                </button>
-                
-                <div id="dosage-result" class="mt-6 hidden result-box p-6 rounded-2xl">
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div>
-                            <p class="text-xs text-[#888]">THC PER SERVING</p>
-                            <p id="result-per-serving" class="metric text-emerald-400"></p>
-                            <p class="text-xs">mg</p>
+                <!-- HOME / OVERVIEW -->
+                <div id="home" class="tool-section active">
+                    <div class="mb-8">
+                        <h2 class="text-4xl font-bold heading-serif tracking-tight">Welcome to Chef Smoke's Kitchen</h2>
+                        <p class="text-xl text-[#aaa] mt-2">Practical tools to help you make better cannabis edibles at home.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="gourmet-card p-6 rounded-2xl">
+                            <h4 class="font-semibold mb-2">How to use these tools</h4>
+                            <ol class="text-sm space-y-2 text-[#aaa]">
+                                <li>1. Start with the <strong>Decarb Timer</strong></li>
+                                <li>2. Use the <strong>Infusion Calculator</strong> to know your potency</li>
+                                <li>3. Plan doses with the <strong>Dosage Calculator</strong></li>
+                                <li>4. Choose the right strain with the <strong>Strain Matcher</strong></li>
+                                <li>5. Scale recipes easily</li>
+                                <li>6. Get personalized recommendations from the <strong>Quiz</strong></li>
+                            </ol>
                         </div>
-                        <div>
-                            <p class="text-xs text-[#888]">TOTAL THC IN BATCH</p>
-                            <p id="result-total" class="metric text-emerald-400"></p>
-                            <p class="text-xs">mg</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 text-xs safety-note">
-                        Always start low (2.5–5mg) and wait 2+ hours. This is an estimate only. Follow local laws.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- STRAIN MATCHER -->
-        <div id="matcher" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
-                <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
-                    <i class="fa-solid fa-leaf text-emerald-400"></i> 
-                    <span>Strain &amp; Terpene Matcher</span>
-                </h3>
-                <p class="text-[#aaa] mb-6">Tell us your desired effects + recipe style for better recommendations.</p>
-                
-                <div class="mb-4">
-                    <label class="block text-sm mb-1.5 text-[#aaa]">Recipe type</label>
-                    <select id="recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        <option value="sweet">Sweet / Dessert</option>
-                        <option value="savory">Savory / Meal</option>
-                        <option value="drink">Drink / Beverage</option>
-                        <option value="gummy">Gummy / Candy</option>
-                    </select>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm mb-1.5 text-[#aaa]">Desired intensity</label>
-                    <select id="intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        <option value="mild">Mild / Functional</option>
-                        <option value="medium">Medium / Balanced</option>
-                        <option value="strong">Strong / Sedating</option>
-                    </select>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-relax" class="accent-[#d4af37]"> <span>Relax / Sleep</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-focus" class="accent-[#d4af37]"> <span>Focus / Creativity</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Mood</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-appetite" class="accent-[#d4af37]"> <span>Appetite / Munchies</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="effect-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
-                    </label>
-                </div>
-                
-                <button onclick="matchStrains()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY STRAINS</button>
-                
-                <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
-            </div>
-        </div>
-
-        <!-- DECARB TIMER -->
-        <div id="timer" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-md mx-auto text-center">
-                <h3 class="text-3xl font-semibold mb-2">Decarb Timer</h3>
-                <p class="text-[#aaa] mb-8">240°F • 30–40 minutes for perfect activation</p>
-                
-                <div class="text-7xl font-mono font-bold mb-2" id="timer-display">35:00</div>
-                <div class="text-emerald-400 text-sm mb-8">Works for most flower</div>
-                
-                <div class="flex justify-center gap-x-3">
-                    <button onclick="startTimer()" class="px-8 py-3 bg-emerald-600 rounded-2xl font-semibold flex-1">START TIMER</button>
-                    <button onclick="pauseTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">PAUSE</button>
-                    <button onclick="resetTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">RESET</button>
-                </div>
-                
-                <div class="mt-8 text-left text-xs text-[#777]">
-                    <strong>Simple steps:</strong><br>
-                    1. Preheat oven to 240°F<br>
-                    2. Break up flower and spread on parchment<br>
-                    3. Bake 30–40 min, stir once halfway<br>
-                    4. Let it cool completely before infusing
-                </div>
-            </div>
-        </div>
-
-        <!-- EDIBLE QUIZ -->
-        <div id="quiz" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
-                <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
-                    <i class="fa-solid fa-question-circle text-emerald-400"></i> 
-                    <span>Edible Quiz — Matcher Style</span>
-                </h3>
-                <p class="text-[#aaa] mb-6">Tell us your preferences and we’ll recommend the perfect edible style for you.</p>
-                
-                <div class="mb-4">
-                    <label class="block text-sm mb-1.5 text-[#aaa]">Preferred recipe style</label>
-                    <select id="quiz-recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        <option value="sweet">Sweet / Dessert</option>
-                        <option value="savory">Savory / Meal</option>
-                        <option value="drink">Drink / Beverage</option>
-                        <option value="gummy">Gummy / Candy</option>
-                    </select>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="block text-sm mb-1.5 text-[#aaa]">Desired experience</label>
-                    <select id="quiz-intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        <option value="mild">Mild / Functional</option>
-                        <option value="medium">Medium / Balanced</option>
-                        <option value="strong">Strong / Relaxing</option>
-                    </select>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-relax" class="accent-[#d4af37]"> <span>Relax / Sleepy</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-focus" class="accent-[#d4af37]"> <span>Focus / Creative</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Happy</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-appetite" class="accent-[#d4af37]"> <span>Appetite Boost</span>
-                    </label>
-                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
-                        <input type="checkbox" id="quiz-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
-                    </label>
-                </div>
-                
-                <button onclick="findEdibleMatch()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY PERFECT EDIBLE</button>
-                
-                <div id="quiz-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
-            </div>
-        </div>
-
-        <!-- INFUSION CALCULATOR (American units) -->
-        <div id="infusion" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <div class="flex items-center gap-x-3 mb-6">
-                    <i class="fa-solid fa-flask text-3xl text-emerald-400"></i>
-                    <h3 class="text-3xl font-semibold">Infusion Strength Calculator</h3>
-                </div>
-                <p class="text-sm text-[#aaa] mb-6">Calculate exactly how strong your infused oil or butter will be.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Ounces of flower or decarb</label>
-                        <input id="flower-grams" type="number" value="0.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
-                    </div>
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % of flower</label>
-                        <input id="flower-thc" type="number" value="20" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
-                    </div>
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">fl oz or oz of oil/butter</label>
-                        <input id="oil-ml" type="number" value="8" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
-                    </div>
-                </div>
-                
-                <button onclick="calculateInfusion()" class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
-                    <i class="fa-solid fa-flask"></i>
-                    <span>CALCULATE POTENCY</span>
-                </button>
-                
-                <div id="infusion-result" class="mt-6 hidden result-box p-6 rounded-2xl">
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div>
-                            <p class="text-xs text-[#888]">MG THC PER FL OZ</p>
-                            <p id="infusion-per-ml" class="metric text-emerald-400"></p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-[#888]">MG THC PER TSP</p>
-                            <p id="infusion-per-tsp" class="metric text-emerald-400"></p>
+                        
+                        <div class="gourmet-card p-6 rounded-2xl">
+                            <h4 class="font-semibold mb-3">Pro Tips from Chef Smoke</h4>
+                            <ul class="text-sm space-y-2 text-[#aaa]">
+                                <li>• Always start low and go slow (2.5–5mg for beginners)</li>
+                                <li>• Wait at least 2 hours before taking more</li>
+                                <li>• Use a kitchen scale for accurate measurements</li>
+                                <li>• Store edibles in an airtight container in a cool, dark place</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="mt-4 text-xs safety-note">Estimate only. Use a kitchen scale for best results.</div>
                 </div>
-            </div>
-        </div>
 
-        <!-- RECIPE SCALER -->
-        <div id="scaler" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <div class="flex items-center gap-x-3 mb-6">
-                    <i class="fa-solid fa-balance-scale text-3xl text-emerald-400"></i>
-                    <h3 class="text-3xl font-semibold">Recipe Scaler</h3>
-                </div>
-                <p class="text-sm text-[#aaa] mb-6">Scale any recipe up or down easily.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Original number of servings</label>
-                        <input id="original-servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                <!-- DOSAGE CALCULATOR -->
+                <div id="dosage" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-2xl">
+                        <div class="flex items-center gap-x-3 mb-6">
+                            <i class="fa-solid fa-calculator text-3xl text-emerald-400"></i>
+                            <h3 class="text-3xl font-semibold">Dosage Calculator</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">Target THC per serving (mg)</label>
+                                <input id="target-mg" type="number" value="10" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">Number of servings</label>
+                                <input id="servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">THC % in your infusion</label>
+                                <input id="thc-percent" type="number" value="15" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">Total infusion volume (fl oz or oz)</label>
+                                <input id="volume" type="number" value="3.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateDosage()" class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>CALCULATE DOSAGE</span>
+                        </button>
+                        
+                        <div id="dosage-result" class="mt-6 hidden result-box p-6 rounded-2xl">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-[#888]">THC PER SERVING</p>
+                                    <p id="result-per-serving" class="metric text-emerald-400"></p>
+                                    <p class="text-xs">mg</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#888]">TOTAL THC IN BATCH</p>
+                                    <p id="result-total" class="metric text-emerald-400"></p>
+                                    <p class="text-xs">mg</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-xs safety-note">Always start low (2.5–5mg) and wait 2+ hours.</div>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">New number of servings</label>
-                        <input id="new-servings" type="number" value="24" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                </div>
+
+                <!-- STRAIN MATCHER -->
+                <div id="matcher" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-3xl">
+                        <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
+                            <i class="fa-solid fa-leaf text-emerald-400"></i> 
+                            <span>Strain &amp; Terpene Matcher</span>
+                        </h3>
+                        <p class="text-[#aaa] mb-6">Tell us your desired effects + recipe style for better recommendations.</p>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm mb-1.5 text-[#aaa]">Recipe type</label>
+                            <select id="recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                                <option value="sweet">Sweet / Dessert</option>
+                                <option value="savory">Savory / Meal</option>
+                                <option value="drink">Drink / Beverage</option>
+                                <option value="gummy">Gummy / Candy</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm mb-1.5 text-[#aaa]">Desired intensity</label>
+                            <select id="intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                                <option value="mild">Mild / Functional</option>
+                                <option value="medium">Medium / Balanced</option>
+                                <option value="strong">Strong / Sedating</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-relax" class="accent-[#d4af37]"> <span>Relax / Sleep</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-focus" class="accent-[#d4af37]"> <span>Focus / Creativity</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Mood</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-appetite" class="accent-[#d4af37]"> <span>Appetite / Munchies</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="effect-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
+                            </label>
+                        </div>
+                        
+                        <button onclick="matchStrains()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY STRAINS</button>
+                        
+                        <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
                     </div>
                 </div>
-                
-                <div class="mt-4">
-                    <label class="block text-sm mb-1.5 text-[#aaa]">Ingredients (one per line, with amounts)</label>
-                    <textarea id="ingredients-list" class="w-full h-32 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm" placeholder="2 cups flour
+
+                <!-- DECARB TIMER -->
+                <div id="timer" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-md">
+                        <h3 class="text-3xl font-semibold mb-2">Decarb Timer</h3>
+                        <p class="text-[#aaa] mb-8">240°F • 30–40 minutes for perfect activation</p>
+                        
+                        <div class="text-7xl font-mono font-bold mb-2" id="timer-display">35:00</div>
+                        <div class="text-emerald-400 text-sm mb-8">Works for most flower</div>
+                        
+                        <div class="flex justify-center gap-x-3">
+                            <button onclick="startTimer()" class="px-8 py-3 bg-emerald-600 rounded-2xl font-semibold flex-1">START TIMER</button>
+                            <button onclick="pauseTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">PAUSE</button>
+                            <button onclick="resetTimer()" class="px-8 py-3 bg-[#333] rounded-2xl font-semibold flex-1">RESET</button>
+                        </div>
+                        
+                        <div class="mt-8 text-left text-xs text-[#777]">
+                            <strong>Simple steps:</strong><br>
+                            1. Preheat oven to 240°F<br>
+                            2. Break up flower and spread on parchment<br>
+                            3. Bake 30–40 min, stir once halfway<br>
+                            4. Let it cool completely before infusing
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDIBLE QUIZ -->
+                <div id="quiz" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-3xl">
+                        <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
+                            <i class="fa-solid fa-question-circle text-emerald-400"></i> 
+                            <span>Edible Quiz — Matcher Style</span>
+                        </h3>
+                        <p class="text-[#aaa] mb-6">Tell us your preferences and we’ll recommend the perfect edible style for you.</p>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm mb-1.5 text-[#aaa]">Preferred recipe style</label>
+                            <select id="quiz-recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                                <option value="sweet">Sweet / Dessert</option>
+                                <option value="savory">Savory / Meal</option>
+                                <option value="drink">Drink / Beverage</option>
+                                <option value="gummy">Gummy / Candy</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm mb-1.5 text-[#aaa]">Desired experience</label>
+                            <select id="quiz-intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                                <option value="mild">Mild / Functional</option>
+                                <option value="medium">Medium / Balanced</option>
+                                <option value="strong">Strong / Relaxing</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-relax" class="accent-[#d4af37]"> <span>Relax / Sleepy</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-focus" class="accent-[#d4af37]"> <span>Focus / Creative</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Happy</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-appetite" class="accent-[#d4af37]"> <span>Appetite Boost</span>
+                            </label>
+                            <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                                <input type="checkbox" id="quiz-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
+                            </label>
+                        </div>
+                        
+                        <button onclick="findEdibleMatch()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY PERFECT EDIBLE</button>
+                        
+                        <div id="quiz-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
+                    </div>
+                </div>
+
+                <!-- INFUSION CALCULATOR -->
+                <div id="infusion" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-2xl">
+                        <div class="flex items-center gap-x-3 mb-6">
+                            <i class="fa-solid fa-flask text-3xl text-emerald-400"></i>
+                            <h3 class="text-3xl font-semibold">Infusion Strength Calculator</h3>
+                        </div>
+                        <p class="text-sm text-[#aaa] mb-6">Calculate exactly how strong your infused oil or butter will be.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">Ounces of flower or decarb</label>
+                                <input id="flower-grams" type="number" value="0.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">THC % of flower</label>
+                                <input id="flower-thc" type="number" value="20" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">fl oz or oz of oil/butter</label>
+                                <input id="oil-ml" type="number" value="8" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateInfusion()" class="mt-8 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-flask"></i>
+                            <span>CALCULATE POTENCY</span>
+                        </button>
+                        
+                        <div id="infusion-result" class="mt-6 hidden result-box p-6 rounded-2xl">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-[#888]">MG THC PER FL OZ</p>
+                                    <p id="infusion-per-ml" class="metric text-emerald-400"></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-[#888]">MG THC PER TSP</p>
+                                    <p id="infusion-per-tsp" class="metric text-emerald-400"></p>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-xs safety-note">Estimate only. Use a kitchen scale for best results.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECIPE SCALER -->
+                <div id="scaler" class="tool-section">
+                    <div class="gourmet-card p-8 rounded-3xl max-w-2xl">
+                        <div class="flex items-center gap-x-3 mb-6">
+                            <i class="fa-solid fa-balance-scale text-3xl text-emerald-400"></i>
+                            <h3 class="text-3xl font-semibold">Recipe Scaler</h3>
+                        </div>
+                        <p class="text-sm text-[#aaa] mb-6">Scale any recipe up or down easily.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">Original number of servings</label>
+                                <input id="original-servings" type="number" value="12" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1.5 text-[#aaa]">New number of servings</label>
+                                <input id="new-servings" type="number" value="24" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="block text-sm mb-1.5 text-[#aaa]">Ingredients (one per line, with amounts)</label>
+                            <textarea id="ingredients-list" class="w-full h-32 bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-sm" placeholder="2 cups flour
 1 cup sugar
 3 eggs"></textarea>
+                        </div>
+                        
+                        <button onclick="scaleRecipe()" class="mt-6 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
+                            <i class="fa-solid fa-balance-scale"></i>
+                            <span>SCALE RECIPE</span>
+                        </button>
+                        
+                        <div id="scaler-result" class="mt-6 hidden result-box p-6 rounded-2xl text-sm whitespace-pre-line"></div>
+                    </div>
                 </div>
-                
-                <button onclick="scaleRecipe()" class="mt-6 w-full bg-[#d4af37] hover:bg-[#c9a227] transition-colors text-[#111] font-semibold py-4 rounded-2xl text-lg flex items-center justify-center gap-x-2">
-                    <i class="fa-solid fa-balance-scale"></i>
-                    <span>SCALE RECIPE</span>
-                </button>
-                
-                <div id="scaler-result" class="mt-6 hidden result-box p-6 rounded-2xl text-sm whitespace-pre-line"></div>
+
             </div>
         </div>
-
     </div>
 
     <footer class="text-center text-xs text-[#555] py-8 border-t border-[#222]">
@@ -495,10 +446,10 @@
         
         function showSection(section) {
             document.querySelectorAll('.tool-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             
             document.getElementById(section).classList.add('active');
-            document.getElementById('tab-' + section).classList.add('active');
+            document.getElementById('nav-' + section).classList.add('active');
         }
         
         function calculateDosage() {
@@ -507,7 +458,6 @@
             const thcPercent = parseFloat(document.getElementById('thc-percent').value) || 15;
             const volume = parseFloat(document.getElementById('volume').value) || 3.5;
             
-            // Rough conversion assuming ~1 fl oz ≈ 30ml for estimation
             const totalThc = (thcPercent / 100) * volume * 30 * 10;
             const perServing = totalThc / servings;
             
@@ -659,13 +609,12 @@
             const thcPercent = parseFloat(document.getElementById('flower-thc').value) || 20;
             const oilOz = parseFloat(document.getElementById('oil-ml').value) || 8;
             
-            // Convert oz to grams for calculation (1 oz ≈ 28.35g)
             const flowerG = flowerOz * 28.35;
-            const oilMl = oilOz * 29.57; // rough fl oz to ml
+            const oilMl = oilOz * 29.57;
             
             const totalThc = flowerG * (thcPercent / 100) * 1000;
             const perFlOz = totalThc / oilOz;
-            const perTsp = perFlOz / 6; // 1 fl oz ≈ 6 tsp
+            const perTsp = perFlOz / 6;
             
             document.getElementById('infusion-per-ml').textContent = perFlOz.toFixed(1);
             document.getElementById('infusion-per-tsp').textContent = perTsp.toFixed(1);
@@ -706,9 +655,9 @@
         function initApp() {
             initializeTailwind();
             document.getElementById('home').classList.add('active');
-            document.getElementById('tab-home').classList.add('active');
+            document.getElementById('nav-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Switched to American measurements (oz & fl oz).', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Vertical navigation in best cooking order.', 'color:#666');
         }
         
         window.onload = initApp;
