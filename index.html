@@ -266,7 +266,7 @@
             </div>
         </div>
 
-        <!-- STRAIN MATCHER (MORE COMPLEX) -->
+        <!-- STRAIN MATCHER -->
         <div id="matcher" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
                 <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
@@ -339,27 +339,65 @@
                 <div class="mt-8 text-left text-xs text-[#777]">
                     <strong>Simple steps:</strong><br>
                     1. Preheat oven to 240°F<br>
-                    2. Break up flower and spread on parchment<br>
-                    3. Bake 30–40 min, stir once halfway<br>
+                    2. Break up flower and spread on parchment
+                    3. Bake 30–40 min, stir once halfway
                     4. Let it cool completely before infusing
                 </div>
             </div>
         </div>
 
-        <!-- EDIBLE QUIZ (5 QUESTIONS) -->
+        <!-- EDIBLE QUIZ (MATCHER STYLE) -->
         <div id="quiz" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-lg mx-auto">
-                <h3 class="text-3xl font-semibold mb-6">What’s Your Perfect Edible?</h3>
+            <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
+                <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
+                    <i class="fa-solid fa-question-circle text-emerald-400"></i> 
+                    <span>Edible Quiz — Matcher Style</span>
+                </h3>
+                <p class="text-[#aaa] mb-6">Tell us your preferences and we’ll recommend the perfect edible style for you.</p>
                 
-                <div id="quiz-content">
-                    <!-- JS populates 5 questions -->
+                <div class="mb-4">
+                    <label class="block text-sm mb-1.5 text-[#aaa]">Preferred recipe style</label>
+                    <select id="quiz-recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        <option value="sweet">Sweet / Dessert</option>
+                        <option value="savory">Savory / Meal</option>
+                        <option value="drink">Drink / Beverage</option>
+                        <option value="gummy">Gummy / Candy</option>
+                    </select>
                 </div>
                 
-                <div id="quiz-result" class="hidden mt-6 p-6 bg-[#111] rounded-2xl">
-                    <h4 class="font-semibold text-xl mb-2" id="quiz-recommendation"></h4>
-                    <p id="quiz-description" class="text-sm"></p>
-                    <button onclick="restartQuiz()" class="mt-4 text-xs underline">Take the quiz again</button>
+                <div class="mb-4">
+                    <label class="block text-sm mb-1.5 text-[#aaa]">Desired experience</label>
+                    <select id="quiz-intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        <option value="mild">Mild / Functional</option>
+                        <option value="medium">Medium / Balanced</option>
+                        <option value="strong">Strong / Relaxing</option>
+                    </select>
                 </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-relax" class="accent-[#d4af37]"> <span>Relax / Sleepy</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-focus" class="accent-[#d4af37]"> <span>Focus / Creative</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-euphoria" class="accent-[#d4af37]"> <span>Euphoria / Happy</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-appetite" class="accent-[#d4af37]"> <span>Appetite Boost</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="quiz-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
+                    </label>
+                </div>
+                
+                <button onclick="findEdibleMatch()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY PERFECT EDIBLE</button>
+                
+                <div id="quiz-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
             </div>
         </div>
 
@@ -461,10 +499,6 @@
             
             document.getElementById(section).classList.add('active');
             document.getElementById('tab-' + section).classList.add('active');
-            
-            if (section === 'quiz' && !document.getElementById('quiz-content').innerHTML) {
-                initQuiz();
-            }
         }
         
         function calculateDosage() {
@@ -499,7 +533,6 @@
             
             let recommendations = [];
             
-            // More complex matching logic
             if (effects.includes('relax') || intensity === 'strong') {
                 recommendations.push({name: "Granddaddy Purple", terps: "Myrcene, Linalool", why: "Deep relaxation — ideal for evening or strong body effects"});
             }
@@ -523,7 +556,6 @@
                 recommendations.push({name: "Wedding Cake", terps: "Limonene, Caryophyllene", why: "Versatile hybrid that works with almost any gourmet infusion"});
             }
             
-            // Show up to 4 recommendations
             recommendations.slice(0,4).forEach(rec => {
                 const card = document.createElement('div');
                 card.className = 'bg-[#111] p-4 rounded-2xl border border-[#333]';
@@ -569,81 +601,57 @@
             updateTimerDisplay();
         }
         
-        // 5 QUESTION EDIBLE QUIZ
-        let currentQuestion = 0;
-        let score = 0;
-        const questions = [
-            { q: "What kind of experience are you chasing?", options: ["Deep relaxation", "Creative energy", "Social & euphoric", "Functional focus"], scores: [3,1,2,0] },
-            { q: "What flavors do you love most?", options: ["Sweet & dessert", "Savory / umami", "Fruity & bright", "Earthy & herbal"], scores: [2,3,1,0] },
-            { q: "How experienced are you with edibles?", options: ["Beginner — start low", "Intermediate", "Experienced", "Daily user"], scores: [0,1,2,3] },
-            { q: "When do you usually consume?", options: ["Evening / Wind down", "Afternoon / Creative time", "Morning / Functional", "Anytime / Social"], scores: [3,2,1,0] },
-            { q: "Do you have any dietary preferences?", options: ["No restrictions", "Low sugar", "Gluten free", "Vegan / Plant based"], scores: [0,1,2,3] }
-        ];
-        
-        function initQuiz() {
-            const container = document.getElementById('quiz-content');
-            container.innerHTML = '';
-            currentQuestion = 0;
-            score = 0;
-            showQuestion();
-        }
-        
-        function showQuestion() {
-            const container = document.getElementById('quiz-content');
-            const q = questions[currentQuestion];
+        // EDIBLE QUIZ - MATCHER STYLE
+        function findEdibleMatch() {
+            const resultsDiv = document.getElementById('quiz-results');
+            resultsDiv.innerHTML = '';
+            resultsDiv.classList.remove('hidden');
             
-            let html = `<div class="mb-4"><p class="font-medium">${q.q}</p></div>`;
+            const recipeType = document.getElementById('quiz-recipe-type').value;
+            const intensity = document.getElementById('quiz-intensity').value;
             
-            q.options.forEach((opt, i) => {
-                html += `<button onclick="answerQuestion(${i})" class="block w-full text-left px-4 py-3 mb-2 bg-[#1f1f1f] hover:bg-[#333] rounded-xl text-sm">${opt}</button>`;
+            const effects = [];
+            if (document.getElementById('quiz-relax').checked) effects.push('relax');
+            if (document.getElementById('quiz-focus').checked) effects.push('focus');
+            if (document.getElementById('quiz-euphoria').checked) effects.push('euphoria');
+            if (document.getElementById('quiz-pain').checked) effects.push('pain');
+            if (document.getElementById('quiz-appetite').checked) effects.push('appetite');
+            if (document.getElementById('quiz-energy').checked) effects.push('energy');
+            
+            let recommendations = [];
+            
+            if (effects.includes('relax') || intensity === 'strong') {
+                recommendations.push({name: "Gourmet Canna-Chocolate or Brownies", why: "Rich, comforting, and perfect for deep relaxation or evening wind-down."});
+            }
+            if (effects.includes('focus') || recipeType === 'sweet') {
+                recommendations.push({name: "Terpene-Infused Gummies or Candies", why: "Clean, functional effects with bright flavors — great for creative or daytime use."});
+            }
+            if (effects.includes('euphoria') || intensity === 'medium') {
+                recommendations.push({name: "Infused Cookies or Blondies", why: "Balanced euphoria with familiar dessert flavors — crowd-pleasing and versatile."});
+            }
+            if (effects.includes('pain') || intensity === 'strong') {
+                recommendations.push({name: "Savory Infused Dishes (Pizza, Pasta, etc.)", why: "Strong body effects paired with satisfying meals for pain relief or deep relaxation."});
+            }
+            if (effects.includes('appetite') || recipeType === 'savory') {
+                recommendations.push({name: "Infused Savory Snacks or Meals", why: "Appetite stimulation combined with hearty, satisfying flavors."});
+            }
+            if (effects.includes('energy') || recipeType === 'drink') {
+                recommendations.push({name: "Infused Beverages or Lemonades", why: "Uplifting and refreshing — ideal for daytime or social settings."});
+            }
+            
+            if (recommendations.length === 0) {
+                recommendations.push({name: "Classic Canna-Chocolate Chip Cookies", why: "The perfect all-rounder — balanced, familiar, and easy to dose."});
+            }
+            
+            recommendations.slice(0,3).forEach(rec => {
+                const card = document.createElement('div');
+                card.className = 'bg-[#111] p-4 rounded-2xl border border-[#333]';
+                card.innerHTML = `
+                    <div class="font-semibold text-emerald-400">${rec.name}</div>
+                    <div class="text-sm mt-2">${rec.why}</div>
+                `;
+                resultsDiv.appendChild(card);
             });
-            
-            container.innerHTML = html;
-        }
-        
-        function answerQuestion(optionIndex) {
-            score += questions[currentQuestion].scores[optionIndex];
-            currentQuestion++;
-            
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showQuizResult();
-            }
-        }
-        
-        function showQuizResult() {
-            const container = document.getElementById('quiz-content');
-            const resultBox = document.getElementById('quiz-result');
-            
-            container.style.display = 'none';
-            resultBox.classList.remove('hidden');
-            
-            let rec = "Classic Canna-Chocolate";
-            let desc = "Balanced and crowd-pleasing. A great starter recipe for any occasion.";
-            
-            if (score >= 10) {
-                rec = "Gourmet Savory Infused Dish";
-                desc = "You like bold flavors and stronger experiences. Try infused pasta or Chicago deep dish.";
-            } else if (score >= 7) {
-                rec = "Terpene-Forward Gummies";
-                desc = "You appreciate nuanced effects. Focus on specific terpene pairings for your recipes.";
-            } else if (score >= 4) {
-                rec = "Premium Chocolate or Brownies";
-                desc = "Sweet tooth with moderate tolerance. Perfect for elegant dinners.";
-            } else {
-                rec = "Light & Functional Edibles";
-                desc = "You prefer milder, more controlled experiences. Start with low-dose chocolates or beverages.";
-            }
-            
-            document.getElementById('quiz-recommendation').textContent = rec;
-            document.getElementById('quiz-description').textContent = desc;
-        }
-        
-        function restartQuiz() {
-            document.getElementById('quiz-result').classList.add('hidden');
-            document.getElementById('quiz-content').style.display = 'block';
-            initQuiz();
         }
         
         function calculateInfusion() {
@@ -696,7 +704,7 @@
             document.getElementById('home').classList.add('active');
             document.getElementById('tab-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Embed button removed. Quiz now has 5 questions. Strain matcher is more complex.', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Quiz now matches Strain Matcher style (dropdowns + checkboxes).', 'color:#666');
         }
         
         window.onload = initApp;
