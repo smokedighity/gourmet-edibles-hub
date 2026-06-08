@@ -212,7 +212,7 @@
             </div>
         </div>
 
-        <!-- DOSAGE CALCULATOR -->
+        <!-- DOSAGE CALCULATOR (American units) -->
         <div id="dosage" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
                 <div class="flex items-center gap-x-3 mb-6">
@@ -231,12 +231,12 @@
                     </div>
                     
                     <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % in your infusion (e.g. 15 for 15%)</label>
+                        <label class="block text-sm mb-1.5 text-[#aaa]">THC % in your infusion</label>
                         <input id="thc-percent" type="number" value="15" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                     <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Total infusion volume (ml or grams)</label>
-                        <input id="volume" type="number" value="100" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Total infusion volume (fl oz or oz)</label>
+                        <input id="volume" type="number" value="3.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                 </div>
                 
@@ -339,14 +339,14 @@
                 <div class="mt-8 text-left text-xs text-[#777]">
                     <strong>Simple steps:</strong><br>
                     1. Preheat oven to 240°F<br>
-                    2. Break up flower and spread on parchment
-                    3. Bake 30–40 min, stir once halfway
+                    2. Break up flower and spread on parchment<br>
+                    3. Bake 30–40 min, stir once halfway<br>
                     4. Let it cool completely before infusing
                 </div>
             </div>
         </div>
 
-        <!-- EDIBLE QUIZ (MATCHER STYLE) -->
+        <!-- EDIBLE QUIZ -->
         <div id="quiz" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
                 <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
@@ -401,7 +401,7 @@
             </div>
         </div>
 
-        <!-- INFUSION CALCULATOR -->
+        <!-- INFUSION CALCULATOR (American units) -->
         <div id="infusion" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
                 <div class="flex items-center gap-x-3 mb-6">
@@ -412,16 +412,16 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">Grams of flower/decarb</label>
-                        <input id="flower-grams" type="number" value="10" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                        <label class="block text-sm mb-1.5 text-[#aaa]">Ounces of flower or decarb</label>
+                        <input id="flower-grams" type="number" value="0.5" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                     <div>
                         <label class="block text-sm mb-1.5 text-[#aaa]">THC % of flower</label>
                         <input id="flower-thc" type="number" value="20" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                     <div>
-                        <label class="block text-sm mb-1.5 text-[#aaa]">ml or grams of oil/butter</label>
-                        <input id="oil-ml" type="number" value="100" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
+                        <label class="block text-sm mb-1.5 text-[#aaa]">fl oz or oz of oil/butter</label>
+                        <input id="oil-ml" type="number" value="8" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3 text-lg focus:outline-none focus:border-[#d4af37]">
                     </div>
                 </div>
                 
@@ -433,15 +433,15 @@
                 <div id="infusion-result" class="mt-6 hidden result-box p-6 rounded-2xl">
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div>
-                            <p class="text-xs text-[#888]">MG THC PER ML</p>
+                            <p class="text-xs text-[#888]">MG THC PER FL OZ</p>
                             <p id="infusion-per-ml" class="metric text-emerald-400"></p>
                         </div>
                         <div>
-                            <p class="text-xs text-[#888]">MG THC PER TSP (5ml)</p>
+                            <p class="text-xs text-[#888]">MG THC PER TSP</p>
                             <p id="infusion-per-tsp" class="metric text-emerald-400"></p>
                         </div>
                     </div>
-                    <div class="mt-4 text-xs safety-note">Estimate only. Actual results vary with decarboxylation efficiency.</div>
+                    <div class="mt-4 text-xs safety-note">Estimate only. Use a kitchen scale for best results.</div>
                 </div>
             </div>
         </div>
@@ -505,9 +505,10 @@
             const targetMg = parseFloat(document.getElementById('target-mg').value) || 10;
             const servings = parseFloat(document.getElementById('servings').value) || 12;
             const thcPercent = parseFloat(document.getElementById('thc-percent').value) || 15;
-            const volume = parseFloat(document.getElementById('volume').value) || 100;
+            const volume = parseFloat(document.getElementById('volume').value) || 3.5;
             
-            const totalThc = (thcPercent / 100) * volume * 10;
+            // Rough conversion assuming ~1 fl oz ≈ 30ml for estimation
+            const totalThc = (thcPercent / 100) * volume * 30 * 10;
             const perServing = totalThc / servings;
             
             document.getElementById('result-per-serving').textContent = perServing.toFixed(1);
@@ -601,7 +602,6 @@
             updateTimerDisplay();
         }
         
-        // EDIBLE QUIZ - MATCHER STYLE
         function findEdibleMatch() {
             const resultsDiv = document.getElementById('quiz-results');
             resultsDiv.innerHTML = '';
@@ -655,15 +655,19 @@
         }
         
         function calculateInfusion() {
-            const flower = parseFloat(document.getElementById('flower-grams').value) || 10;
+            const flowerOz = parseFloat(document.getElementById('flower-grams').value) || 0.5;
             const thcPercent = parseFloat(document.getElementById('flower-thc').value) || 20;
-            const oil = parseFloat(document.getElementById('oil-ml').value) || 100;
+            const oilOz = parseFloat(document.getElementById('oil-ml').value) || 8;
             
-            const totalThc = flower * (thcPercent / 100) * 1000;
-            const perMl = totalThc / oil;
-            const perTsp = perMl * 5;
+            // Convert oz to grams for calculation (1 oz ≈ 28.35g)
+            const flowerG = flowerOz * 28.35;
+            const oilMl = oilOz * 29.57; // rough fl oz to ml
             
-            document.getElementById('infusion-per-ml').textContent = perMl.toFixed(1);
+            const totalThc = flowerG * (thcPercent / 100) * 1000;
+            const perFlOz = totalThc / oilOz;
+            const perTsp = perFlOz / 6; // 1 fl oz ≈ 6 tsp
+            
+            document.getElementById('infusion-per-ml').textContent = perFlOz.toFixed(1);
             document.getElementById('infusion-per-tsp').textContent = perTsp.toFixed(1);
             document.getElementById('infusion-result').classList.remove('hidden');
         }
@@ -704,7 +708,7 @@
             document.getElementById('home').classList.add('active');
             document.getElementById('tab-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Quiz now matches Strain Matcher style (dropdowns + checkboxes).', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Switched to American measurements (oz & fl oz).', 'color:#666');
         }
         
         window.onload = initApp;
