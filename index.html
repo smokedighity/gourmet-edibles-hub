@@ -99,11 +99,6 @@
                     <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                     <span class="text-emerald-400">Live Tools</span>
                 </div>
-                <button onclick="copyEmbedCode()" 
-                        class="px-4 py-2 text-xs font-medium bg-white text-[#111] rounded-full hover:bg-[#d4af37] transition-colors flex items-center gap-x-2">
-                    <i class="fa-solid fa-code mr-1"></i>
-                    <span>Embed Code</span>
-                </button>
             </div>
         </div>
     </header>
@@ -271,16 +266,35 @@
             </div>
         </div>
 
-        <!-- STRAIN MATCHER -->
+        <!-- STRAIN MATCHER (MORE COMPLEX) -->
         <div id="matcher" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-3xl mx-auto">
                 <h3 class="text-3xl font-semibold mb-2 flex items-center gap-x-3">
                     <i class="fa-solid fa-leaf text-emerald-400"></i> 
                     <span>Strain &amp; Terpene Matcher</span>
                 </h3>
-                <p class="text-[#aaa] mb-6">Tell us the feeling you want. We’ll suggest the right strains for your recipe.</p>
+                <p class="text-[#aaa] mb-6">Tell us your desired effects + recipe style for better recommendations.</p>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                <div class="mb-4">
+                    <label class="block text-sm mb-1.5 text-[#aaa]">Recipe type</label>
+                    <select id="recipe-type" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        <option value="sweet">Sweet / Dessert</option>
+                        <option value="savory">Savory / Meal</option>
+                        <option value="drink">Drink / Beverage</option>
+                        <option value="gummy">Gummy / Candy</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm mb-1.5 text-[#aaa]">Desired intensity</label>
+                    <select id="intensity" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
+                        <option value="mild">Mild / Functional</option>
+                        <option value="medium">Medium / Balanced</option>
+                        <option value="strong">Strong / Sedating</option>
+                    </select>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
                     <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
                         <input type="checkbox" id="effect-relax" class="accent-[#d4af37]"> <span>Relax / Sleep</span>
                     </label>
@@ -293,11 +307,17 @@
                     <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
                         <input type="checkbox" id="effect-pain" class="accent-[#d4af37]"> <span>Pain Relief</span>
                     </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-appetite" class="accent-[#d4af37]"> <span>Appetite / Munchies</span>
+                    </label>
+                    <label class="flex items-center gap-x-2 bg-[#111] p-3 rounded-xl cursor-pointer">
+                        <input type="checkbox" id="effect-energy" class="accent-[#d4af37]"> <span>Energy / Uplifting</span>
+                    </label>
                 </div>
                 
                 <button onclick="matchStrains()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY STRAINS</button>
                 
-                <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 hidden"></div>
+                <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
             </div>
         </div>
 
@@ -326,13 +346,13 @@
             </div>
         </div>
 
-        <!-- EDIBLE QUIZ -->
+        <!-- EDIBLE QUIZ (5 QUESTIONS) -->
         <div id="quiz" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-lg mx-auto">
                 <h3 class="text-3xl font-semibold mb-6">What’s Your Perfect Edible?</h3>
                 
                 <div id="quiz-content">
-                    <!-- JS populates -->
+                    <!-- JS populates 5 questions -->
                 </div>
                 
                 <div id="quiz-result" class="hidden mt-6 p-6 bg-[#111] rounded-2xl">
@@ -343,7 +363,7 @@
             </div>
         </div>
 
-        <!-- INFUSION CALCULATOR (NEW) -->
+        <!-- INFUSION CALCULATOR -->
         <div id="infusion" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
                 <div class="flex items-center gap-x-3 mb-6">
@@ -383,12 +403,12 @@
                             <p id="infusion-per-tsp" class="metric text-emerald-400"></p>
                         </div>
                     </div>
-                    <div class="mt-4 text-xs safety-note">Estimate only. Actual results vary with decarboxylation efficiency and extraction method.</div>
+                    <div class="mt-4 text-xs safety-note">Estimate only. Actual results vary with decarboxylation efficiency.</div>
                 </div>
             </div>
         </div>
 
-        <!-- RECIPE SCALER (NEW) -->
+        <!-- RECIPE SCALER -->
         <div id="scaler" class="tool-section">
             <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
                 <div class="flex items-center gap-x-3 mb-6">
@@ -466,30 +486,45 @@
             resultsDiv.innerHTML = '';
             resultsDiv.classList.remove('hidden');
             
+            const recipeType = document.getElementById('recipe-type').value;
+            const intensity = document.getElementById('intensity').value;
+            
             const effects = [];
             if (document.getElementById('effect-relax').checked) effects.push('relax');
             if (document.getElementById('effect-focus').checked) effects.push('focus');
             if (document.getElementById('effect-euphoria').checked) effects.push('euphoria');
             if (document.getElementById('effect-pain').checked) effects.push('pain');
+            if (document.getElementById('effect-appetite').checked) effects.push('appetite');
+            if (document.getElementById('effect-energy').checked) effects.push('energy');
             
             let recommendations = [];
             
-            if (effects.includes('relax') || effects.length === 0) {
-                recommendations.push({name: "Granddaddy Purple", terps: "Myrcene, Linalool", why: "Deep body relaxation — perfect for evening edibles"});
+            // More complex matching logic
+            if (effects.includes('relax') || intensity === 'strong') {
+                recommendations.push({name: "Granddaddy Purple", terps: "Myrcene, Linalool", why: "Deep relaxation — ideal for evening or strong body effects"});
             }
-            if (effects.includes('focus')) {
-                recommendations.push({name: "Sour Diesel", terps: "Limonene, Caryophyllene", why: "Uplifting and creative — great for cooking sessions"});
+            if (effects.includes('focus') || recipeType === 'sweet') {
+                recommendations.push({name: "Sour Diesel", terps: "Limonene, Caryophyllene", why: "Uplifting and creative — great for sweet or functional recipes"});
             }
-            if (effects.includes('euphoria')) {
-                recommendations.push({name: "Blue Dream", terps: "Myrcene, Pinene", why: "Balanced euphoria with gentle body effects"});
+            if (effects.includes('euphoria') || intensity === 'medium') {
+                recommendations.push({name: "Blue Dream", terps: "Myrcene, Pinene", why: "Balanced euphoria — versatile for most gourmet infusions"});
             }
-            if (effects.includes('pain')) {
-                recommendations.push({name: "OG Kush", terps: "Limonene, Caryophyllene", why: "Strong body high — excellent for pain relief recipes"});
+            if (effects.includes('pain') || intensity === 'strong') {
+                recommendations.push({name: "OG Kush", terps: "Limonene, Caryophyllene", why: "Strong body high — excellent for pain relief or heavy recipes"});
+            }
+            if (effects.includes('appetite') || recipeType === 'savory') {
+                recommendations.push({name: "Wedding Cake", terps: "Limonene, Caryophyllene", why: "Strong appetite stimulation — perfect for savory meals"});
+            }
+            if (effects.includes('energy') || recipeType === 'drink') {
+                recommendations.push({name: "Jack Herer", terps: "Pinene, Terpinolene", why: "Clear-headed energy — great for beverages and daytime use"});
             }
             
-            if (recommendations.length === 0) recommendations = [{name: "Wedding Cake", terps: "Limonene, Caryophyllene", why: "Versatile hybrid that works with almost any gourmet infusion"}];
+            if (recommendations.length === 0) {
+                recommendations.push({name: "Wedding Cake", terps: "Limonene, Caryophyllene", why: "Versatile hybrid that works with almost any gourmet infusion"});
+            }
             
-            recommendations.slice(0,3).forEach(rec => {
+            // Show up to 4 recommendations
+            recommendations.slice(0,4).forEach(rec => {
                 const card = document.createElement('div');
                 card.className = 'bg-[#111] p-4 rounded-2xl border border-[#333]';
                 card.innerHTML = `
@@ -534,12 +569,15 @@
             updateTimerDisplay();
         }
         
+        // 5 QUESTION EDIBLE QUIZ
         let currentQuestion = 0;
         let score = 0;
         const questions = [
             { q: "What kind of experience are you chasing?", options: ["Deep relaxation", "Creative energy", "Social & euphoric", "Functional focus"], scores: [3,1,2,0] },
-            { q: "What flavors do you love?", options: ["Sweet & dessert", "Savory / umami", "Fruity & bright", "Earthy & herbal"], scores: [2,3,1,0] },
-            { q: "How experienced are you with edibles?", options: ["Beginner — start low", "Intermediate", "Experienced", "Daily user"], scores: [0,1,2,3] }
+            { q: "What flavors do you love most?", options: ["Sweet & dessert", "Savory / umami", "Fruity & bright", "Earthy & herbal"], scores: [2,3,1,0] },
+            { q: "How experienced are you with edibles?", options: ["Beginner — start low", "Intermediate", "Experienced", "Daily user"], scores: [0,1,2,3] },
+            { q: "When do you usually consume?", options: ["Evening / Wind down", "Afternoon / Creative time", "Morning / Functional", "Anytime / Social"], scores: [3,2,1,0] },
+            { q: "Do you have any dietary preferences?", options: ["No restrictions", "Low sugar", "Gluten free", "Vegan / Plant based"], scores: [0,1,2,3] }
         ];
         
         function initQuiz() {
@@ -584,15 +622,18 @@
             let rec = "Classic Canna-Chocolate";
             let desc = "Balanced and crowd-pleasing. A great starter recipe for any occasion.";
             
-            if (score >= 7) {
+            if (score >= 10) {
                 rec = "Gourmet Savory Infused Dish";
                 desc = "You like bold flavors and stronger experiences. Try infused pasta or Chicago deep dish.";
-            } else if (score >= 5) {
+            } else if (score >= 7) {
                 rec = "Terpene-Forward Gummies";
                 desc = "You appreciate nuanced effects. Focus on specific terpene pairings for your recipes.";
-            } else if (score >= 3) {
+            } else if (score >= 4) {
                 rec = "Premium Chocolate or Brownies";
                 desc = "Sweet tooth with moderate tolerance. Perfect for elegant dinners.";
+            } else {
+                rec = "Light & Functional Edibles";
+                desc = "You prefer milder, more controlled experiences. Start with low-dose chocolates or beverages.";
             }
             
             document.getElementById('quiz-recommendation').textContent = rec;
@@ -610,7 +651,7 @@
             const thcPercent = parseFloat(document.getElementById('flower-thc').value) || 20;
             const oil = parseFloat(document.getElementById('oil-ml').value) || 100;
             
-            const totalThc = flower * (thcPercent / 100) * 1000; // rough, assuming good extraction
+            const totalThc = flower * (thcPercent / 100) * 1000;
             const perMl = totalThc / oil;
             const perTsp = perMl * 5;
             
@@ -650,19 +691,12 @@
             document.getElementById('scaler-result').classList.remove('hidden');
         }
         
-        function copyEmbedCode() {
-            const code = `<iframe src="https://smokedighity.github.io/gourmet-edibles-hub/" width="100%" height="800" frameborder="0" style="border-radius: 20px; max-width: 100%;"></iframe>`;
-            navigator.clipboard.writeText(code).then(() => {
-                alert("Embed code copied! Paste into your Blogger page HTML view.");
-            });
-        }
-        
         function initApp() {
             initializeTailwind();
             document.getElementById('home').classList.add('active');
             document.getElementById('tab-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Updated with Infusion Calculator + Recipe Scaler for home cooks.', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Embed button removed. Quiz now has 5 questions. Strain matcher is more complex.', 'color:#666');
         }
         
         window.onload = initApp;
