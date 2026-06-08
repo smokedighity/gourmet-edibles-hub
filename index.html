@@ -110,7 +110,7 @@
 
     <div class="max-w-7xl mx-auto px-6 pt-8 pb-16">
         
-        <!-- Hero - IMPROVED READER-FRIENDLY -->
+        <!-- Hero -->
         <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
             <div>
                 <h2 class="text-5xl font-bold heading-serif tracking-tighter">Chef Smoke's Kitchen Tools</h2>
@@ -137,10 +137,6 @@
                 <i class="fa-solid fa-leaf w-4"></i> 
                 <span>Strain Matcher</span>
             </button>
-            <button onclick="showSection('customizer')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-customizer">
-                <i class="fa-solid fa-magic w-4"></i> 
-                <span>Recipe Customizer</span>
-            </button>
             <button onclick="showSection('timer')" class="nav-tab px-5 py-2.5 text-sm font-medium rounded-t-lg flex items-center gap-x-2" id="tab-timer">
                 <i class="fa-solid fa-clock w-4"></i> 
                 <span>Decarb Timer</span>
@@ -159,14 +155,13 @@
             </button>
         </div>
 
-        <!-- HOME SECTION - IMPROVED -->
+        <!-- HOME SECTION -->
         <div id="home" class="tool-section active">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Quick Stats -->
                 <div class="gourmet-card p-6 rounded-2xl md:col-span-1">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-sm text-[#888]">8 TOOLS READY</p>
+                            <p class="text-sm text-[#888]">7 TOOLS READY</p>
                             <p class="text-6xl font-bold mt-1">Instant</p>
                         </div>
                         <i class="fa-solid fa-rocket text-4xl text-[#d4af37]"></i>
@@ -303,40 +298,6 @@
                 <button onclick="matchStrains()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3.5 rounded-2xl font-semibold">FIND MY STRAINS</button>
                 
                 <div id="matcher-results" class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 hidden"></div>
-            </div>
-        </div>
-
-        <!-- RECIPE CUSTOMIZER -->
-        <div id="customizer" class="tool-section">
-            <div class="gourmet-card p-8 rounded-3xl max-w-2xl mx-auto">
-                <h3 class="text-3xl font-semibold mb-6">Recipe Customizer</h3>
-                
-                <div class="space-y-5">
-                    <div>
-                        <label class="text-sm">Choose a base recipe</label>
-                        <select id="base-recipe" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                            <option>Classic Canna-Chocolate Chip Cookies</option>
-                            <option>Gourmet CBD Brownies</option>
-                            <option>Chicago Deep Dish Pizza (Infused)</option>
-                            <option>Terpene-Infused Gummies</option>
-                        </select>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-sm">Target THC per serving (mg)</label>
-                            <input type="number" id="custom-thc" value="8" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        </div>
-                        <div>
-                            <label class="text-sm">How many servings?</label>
-                            <input type="number" id="custom-servings" value="16" class="w-full bg-[#111] border border-[#444] rounded-xl px-4 py-3">
-                        </div>
-                    </div>
-                </div>
-                
-                <button onclick="customizeRecipe()" class="mt-6 w-full bg-[#d4af37] text-[#111] py-4 rounded-2xl font-semibold">CREATE MY VERSION</button>
-                
-                <div id="custom-result" class="mt-6 hidden result-box p-6 rounded-2xl text-sm"></div>
             </div>
         </div>
 
@@ -512,23 +473,6 @@ Bake 10-12 minutes</textarea>
             });
         }
         
-        function customizeRecipe() {
-            const base = document.getElementById('base-recipe').value;
-            const thc = document.getElementById('custom-thc').value;
-            const servings = document.getElementById('custom-servings').value;
-            
-            const result = document.getElementById('custom-result');
-            result.innerHTML = `
-                <h4 class="font-semibold mb-2">${base} — Your Custom Version</h4>
-                <p class="text-sm">Target: <strong>${thc}mg THC</strong> per serving • Makes <strong>${servings}</strong> servings</p>
-                <div class="mt-4 text-xs">
-                    <strong>Chef Smoke Tip:</strong> Use 15-20% more infused butter than the standard recipe for even distribution. Pair with bright terpenes like Limonene for better flavor.
-                </div>
-                <div class="mt-3 text-[10px] text-[#666]">Full custom recipe steps available in the next Gourmet Gazette.</div>
-            `;
-            result.classList.remove('hidden');
-        }
-        
         let timerInterval = null;
         let timeLeft = 35 * 60;
         
@@ -685,7 +629,7 @@ Bake 10-12 minutes</textarea>
             document.getElementById('home').classList.add('active');
             document.getElementById('tab-home').classList.add('active');
             updateTimerDisplay();
-            console.log('%c[Gourmet Edibles Hub] Updated with reader-friendly wording. Ready.', 'color:#666');
+            console.log('%c[Gourmet Edibles Hub] Recipe Customizer removed. 7 tools remaining.', 'color:#666');
         }
         
         window.onload = initApp;
